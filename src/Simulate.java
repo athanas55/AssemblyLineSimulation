@@ -112,9 +112,10 @@ public class Simulate {
 
         System.out.println("\nTasks processed in each station.");
         for(ProcessingStation station: allStations)
-            System.out.println("\t" + station.getName() + ": " + station.getCompletedTasks().size());
+            System.out.println("\t" + station.getName() +
+                    ": " + station.getCompletedTasks().size());
 
-        System.out.println("\nFully completed tasks in assembly line during normal phase: " + fullyProcessedTasks);
+        System.out.println("\nFully completed tasks in assembly line (normal phase): " + fullyProcessedTasks);
 
         System.out.println("Average processing time per station:");
         for(ProcessingStation station: allStations)
@@ -132,8 +133,10 @@ public class Simulate {
                     ": ", calcAvgStationPerf(station));
 
         double totalTaskPTime = 0.0;
-        int type1Finished = 0, type2Finished = 0, type3Finished = 0, type4Finished = 0;
-        double type1totalTime = 0, type2totalTime = 0, type3totalTime = 0, type4totalTime = 0;
+        int type1Finished = 0, type2Finished = 0,
+                type3Finished = 0, type4Finished = 0;
+        double type1totalTime = 0, type2totalTime = 0,
+                type3totalTime = 0, type4totalTime = 0;
         for(Task task: allTasks)
             if(task.isFinished()) {
                 totalTaskPTime += task.getProcessingTime();
@@ -153,12 +156,14 @@ public class Simulate {
                 }
             }
 
-        System.out.printf("%n%s%n%s%.2f%n%s%.2f%n%s%.2f%n%s%.2f%n", "Average processing time per task type: ",
+        System.out.printf("%n%s%n%s%.2f%n%s%.2f%n%s%.2f%n%s%.2f%n",
+                "Average processing time per task type: ",
                 "\tType 1: ", type1totalTime / type1Finished,
                 "\tType 2: ", type2totalTime / type2Finished,
                 "\tType 3: ", type3totalTime / type3Finished,
                 "\tType 4: ", type4totalTime / type4Finished);
 
-        System.out.printf("%n%s%.2f%n", "Average task processing time: ", totalTaskPTime / fullyProcessedTasks.get());
+        System.out.printf("%n%s%.2f%n", "Average task processing time: ",
+                totalTaskPTime / fullyProcessedTasks.get());
     }
 }
