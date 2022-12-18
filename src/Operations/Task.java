@@ -30,22 +30,18 @@ public abstract class Task implements Runnable {
 
     public void run() {
         if(this instanceof Type1) {
-
             ProcessingStation[] processingStations = {stations[0], stations[1], stations[2], stations[3]};
             processingTime = processTask(arrivalTime, processingStations, finished) - arrivalTime;
         }
         else if (this instanceof Type2) {
-
             ProcessingStation[] processingStations =  {stations[0], stations[2], stations[3]};
             processingTime = processTask(arrivalTime, processingStations, finished) - arrivalTime;
         }
         else if (this instanceof Type3) {
-
             ProcessingStation[] processingStations =  {stations[1], stations[3], stations[2]};
             processingTime = processTask(arrivalTime, processingStations, finished) - arrivalTime;
         }
         else {
-
             ProcessingStation[] processingStations =  {stations[0], stations[3]};
             processingTime = processTask(arrivalTime, processingStations, finished) - arrivalTime;
         }
@@ -59,7 +55,9 @@ public abstract class Task implements Runnable {
         return processingTime;
     }
 
-    public double processTask(double arrivalTime, ProcessingStation[] stations, AtomicInteger completed) {
+    public double processTask(double arrivalTime,
+                              ProcessingStation[] stations,
+                              AtomicInteger completed) {
         double currentTimeStamp = arrivalTime;
         for (ProcessingStation station : stations) {
             try {
