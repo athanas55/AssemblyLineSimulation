@@ -63,7 +63,8 @@ public abstract class Task implements Runnable {
             try {
                 Worker worker = station.getAllWorkers().take();
                 station.process(this);
-                System.out.printf("%s%d%s%s%n", "Task #", index, " started being processed at ", station.getName());
+                System.out.printf("%s%d%s%s%n", "Task #", index,
+                        " started being processed at ", station.getName());
                 double time = station.getTaskProcessingTime();
                 if (worker.getPreviousTaskFinish() > arrivalTime)
                     currentTimeStamp = worker.getPreviousTaskFinish() + time;
@@ -72,12 +73,15 @@ public abstract class Task implements Runnable {
                 worker.setPreviousTaskFinish(currentTimeStamp);
                 station.getAllWorkers().put(worker);
                 if (currentTimeStamp < 200) {
-                    System.out.println("Task #" + index + " is being processed during system training period");
+                    System.out.println("Task #" + index +
+                            " is being processed during system training period");
                 } else if (currentTimeStamp > 1000.0) {
-                    System.out.println("Timeout reached. Task#" + index + " didn't complete processing.");
+                    System.out.println("Timeout reached. Task#" +
+                            index + " didn't complete processing.");
 
                 } else {
-                    System.out.printf("%s%d%s%s%s%.2f%n", "Task #", index, " left ", station.getName(), " at ", currentTimeStamp);
+                    System.out.printf("%s%d%s%s%s%.2f%n", "Task #", index,
+                            " left ", station.getName(), " at ", currentTimeStamp);
                     station.incrementProcessingTime(time);
                     station.addCompletedTasks(this);
                 }
@@ -86,7 +90,8 @@ public abstract class Task implements Runnable {
             }
         }
         if(currentTimeStamp > 200 && currentTimeStamp <1001) {
-            System.out.printf("%s%d%s%.2f%n", "Task #", index, " FINISHED at ", currentTimeStamp);
+            System.out.printf("%s%d%s%.2f%n", "Task #",
+                    index, " FINISHED at ", currentTimeStamp);
             isDone = true;
             completed.incrementAndGet();
         }

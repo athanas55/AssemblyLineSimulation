@@ -100,7 +100,7 @@ public class Simulate {
     }
 
     public static double calcAvgWorkerPerformance(ProcessingStation station) {
-        return (station.getCompletedTasks().size() / (double) (SIM_TIME - TRANS_PHASE)) / station.getStationWorkers().size();
+        return (station.getCompletedTasks().size() / (double) ((SIM_TIME - TRANS_PHASE) * station.getStationWorkers().size()));
     }
 
     public static double calcAvgStationPerf(ProcessingStation station) {
