@@ -2,7 +2,6 @@ package Operations;
 
 import Stations.ProcessingStation;
 import Stations.Worker;
-
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -28,7 +27,6 @@ public abstract class Task implements Runnable {
         this.stations = stations;
         this.finished = completed;
     }
-
 
     public void run() {
         if(this instanceof Type1) {

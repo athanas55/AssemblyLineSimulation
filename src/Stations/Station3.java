@@ -1,9 +1,6 @@
 package Stations;
 
-import Operations.Task;
-import Operations.Type1;
-import Operations.Type2;
-import Operations.Type3;
+import Operations.*;
 import org.apache.commons.math3.distribution.NormalDistribution;
 
 import java.util.Random;

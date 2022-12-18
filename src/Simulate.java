@@ -13,11 +13,10 @@ public class Simulate {
     private static final double RATE = 2.0 / 8.0;
     private static final int SIM_TIME = 1000;
     private static final int TRANS_PHASE = 200;
-
     private static final ArrayList<Task> allTasks = new ArrayList<>();
     private static final SplittableRandom random = new SplittableRandom();
-
     private static final AtomicInteger fullyProcessedTasks = new AtomicInteger(0);
+
     public static void main(String[] args) throws InterruptedException {
 
         // create processing stations
@@ -45,7 +44,6 @@ public class Simulate {
         | οι χρόνοι ανάμεσα σε τυχαίες αφίξεις ενός άπειρου πληθυσμού.
         | Αντίστροφος μετασχηματισμός εκθετικής κατανομής : x = -ln(1 - U)/λ
         */
-
         double clock = 0;
         int taskNum = 0;
         while (clock <= SIM_TIME) {
@@ -67,7 +65,7 @@ public class Simulate {
             }
         }
         try {
-            if(!executor.awaitTermination(1, TimeUnit.SECONDS)) {
+            if(!executor.awaitTermination(3, TimeUnit.SECONDS)) {
                 executor.shutdownNow();
             }
         }catch (InterruptedException e) {
@@ -98,8 +96,7 @@ public class Simulate {
     }
 
     public static double calcAverageTimePerStation (ProcessingStation station) {
-        double totalProcessingTime = station.getTotalProcessingTime();
-        return totalProcessingTime/station.getCompletedTasks().size();
+        return station.getTotalProcessingTime()/station.getCompletedTasks().size();
     }
 
     public static double calcAvgWorkerPerformance(ProcessingStation station) {
@@ -119,25 +116,20 @@ public class Simulate {
 
         System.out.println("\nFully completed tasks in assembly line during normal phase: " + fullyProcessedTasks);
 
-        double s1APT = calcAverageTimePerStation(allStations[0]);
-        double s2APT = calcAverageTimePerStation(allStations[1]);
-        double s3APT = calcAverageTimePerStation(allStations[2]);
-        double s4APT = calcAverageTimePerStation(allStations[3]);
-
-        System.out.printf("%n%s%n%s%s%.2f%n%s%s%.2f%n%s%s%.2f%n%s%s%.2f%n",
-                "Average processing time per station: ",
-                "\t" + allStations[0].getName(), ": ", s1APT,
-                "\t" + allStations[1].getName(), ": ", s2APT,
-                "\t" + allStations[2].getName(), ": ", s3APT,
-                "\t" + allStations[3].getName(), ": ", s4APT);
+        System.out.println("Average processing time per station:");
+        for(ProcessingStation station: allStations)
+            System.out.printf("%s%s%.2f%n", "\t" + station.getName(),
+                    ": ", calcAverageTimePerStation(station));
 
         System.out.println("\nAverage worker performance per station:");
         for(ProcessingStation station: allStations)
-            System.out.printf("%s%s%.4f%n", "\t" + station.getName(), ": ", calcAvgWorkerPerformance(station));
+            System.out.printf("%s%s%.4f%n", "\t" + station.getName(),
+                    ": ", calcAvgWorkerPerformance(station));
 
         System.out.println("\nAverage station performance:");
         for(ProcessingStation station: allStations)
-            System.out.printf("%s%s%.4f%n", "\t" + station.getName(), ": ", calcAvgStationPerf(station));
+            System.out.printf("%s%s%.4f%n", "\t" + station.getName(),
+                    ": ", calcAvgStationPerf(station));
 
         double totalTaskPTime = 0.0;
         int type1Finished = 0, type2Finished = 0, type3Finished = 0, type4Finished = 0;

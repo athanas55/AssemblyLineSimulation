@@ -1,7 +1,6 @@
 package Stations;
 
 import Operations.Task;
-
 import java.util.ArrayList;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -11,10 +10,8 @@ public abstract class ProcessingStation {
     protected final String name;
     protected BlockingQueue<Worker> allWorkers = new LinkedBlockingQueue<>();
     protected ArrayList<Task> completedTasks = new ArrayList<>();
-
     ArrayList<Worker> stationWorkers = new ArrayList<>();
     protected double taskProcessingTime;
-
     private static double totalProcessingTime;
 
 
