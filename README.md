@@ -19,12 +19,11 @@ Task type | station 1 | station 2 | station 3 | station 4
 3         |     -     |  (20,2)   |  (50,8)   |  (10,1)
 4         |  (30,5)   |     -     |     -     |  (15,2)
 
-Workers per station
-
+Workers per station:
 Station 1: 8
 Station 2: 8
 Station 3: 20
 Station 4: 7
 
-Simulation time 800 hours.
-System transition phase 200 hours.
+Simulation time: 800 hours.
+System transition phase: 200 hours.
