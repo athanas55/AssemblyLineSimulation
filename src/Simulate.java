@@ -156,14 +156,14 @@ public class Simulate {
                 }
             }
 
+        System.out.printf("%n%s%.2f%n", "Average task processing time: ",
+                totalTaskPTime / fullyProcessedTasks.get());
+
         System.out.printf("%n%s%n%s%.2f%n%s%.2f%n%s%.2f%n%s%.2f%n",
                 "Average processing time per task type: ",
                 "\tType 1: ", type1totalTime / type1Finished,
                 "\tType 2: ", type2totalTime / type2Finished,
                 "\tType 3: ", type3totalTime / type3Finished,
                 "\tType 4: ", type4totalTime / type4Finished);
-
-        System.out.printf("%n%s%.2f%n", "Average task processing time: ",
-                totalTaskPTime / fullyProcessedTasks.get());
     }
 }
